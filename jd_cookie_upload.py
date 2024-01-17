@@ -197,5 +197,8 @@ if __name__ == "__main__":
     print(ql.getEnvs())
     # 获取JD Cookie
     jd_cookie = asyncio.get_event_loop().run_until_complete(get_jd_cookie())
+    if jd_cookie.find("pt_pin=") != -1:
+        remark = jd_cookie[jd_cookie.find("pt_pin=") + 7:jd_cookie.find(";", jd_cookie.find("pt_pin="))]
+        print(remark)
     # 更新JD Cookie到青龙面板
     update_jd_cookie_to_ql(ql, jd_cookie, remark)

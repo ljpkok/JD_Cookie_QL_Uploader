@@ -20,7 +20,7 @@
 
 ## 使用说明
 1. 在`QL`类中填写您的青龙面板地址`address`、`client_id`和`client_secret`。 获取方法[参考](https://blog.csdn.net/wsfsp_4/article/details/128316982)
-2. 选择你要更新的JD_COOKIE的备注,填写为`remark`。
+2. 默认备注为Cookie 中获取的pt_pin。
 2. 运行主脚本以获取JD Cookie并更新到青龙面板：
 
 `python jd_cookie_upload.py`
