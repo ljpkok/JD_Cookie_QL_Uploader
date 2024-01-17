@@ -23,7 +23,7 @@
 2. 默认备注为Cookie 中获取的pt_pin。
 2. 运行主脚本以获取JD Cookie并更新到青龙面板：
 
-`python jd_cookie_upload.py`
+`python jd_cookie_uploader.py`
 
 ## 注意事项
 - 确保您的青龙面板可正常访问且`client_id`和`client_secret`正确无误。
