@@ -177,7 +177,7 @@ def update_jd_cookie_to_ql(ql, jd_cookie, remark):
     # 如果不存在相同备注，则新增JD_COOKIE
     env = [
         {
-        "name": "test",
+        "name": "JD_COOKIE",
         "value": str(jd_cookie),
         "remarks": remark
        }
