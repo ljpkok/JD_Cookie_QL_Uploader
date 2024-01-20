@@ -8,7 +8,7 @@
 - **更新青龙面板环境变量**：将获取到的JD Cookie自动更新到青龙面板的环境变量中，便于其他脚本使用。
 
 ## 灵感来源
-本项目的灵感来源于[huaisha1224](https://github.com/huaisha1224)的原始代码和CSDN博客文章：[Python自动化之使用Pyppeteer模拟登陆京东获取cookie](https://blog.csdn.net/wsfsp_4/article/details/128316982)。
+本项目的灵感来源于[huaisha1224](https://github.com/huaisha1224)的原始代码和CSDN博客文章：[青龙面板教程(三)：OpenApi](https://blog.csdn.net/wsfsp_4/article/details/128316982)。
 
 ## 安装指南
 1. 确保您的系统已安装Python环境。
