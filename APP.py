@@ -2,7 +2,8 @@ import configparser
 import sys
 import asyncio
 import os
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLineEdit, QPushButton
+from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout, QLineEdit, QPushButton, QLabel
+from PyQt5.QtGui import QIcon
 # 引入 ql 类
 from jd_cookie_uploader import QL
 from jd_cookie_uploader import get_jd_cookie
@@ -14,7 +15,6 @@ config_path = 'config.ini'
 address = "temp"
 client_id = "temp"
 client_secret = "temp"
-
 
 def resource_path(relative_path):
     # Get absolute path to resource, works for dev and for PyInstaller
@@ -41,26 +41,32 @@ class JDQLApp(QWidget):
         self.initUI()
 
     def initUI(self):
-        layout = QVBoxLayout()
+        self.setGeometry(300, 300, 400, 200)  # 设置窗口初始位置和大小
+        self.setWindowTitle('JDQL App')  # 设置窗口标题
+        self.setWindowIcon(QIcon('app_icon.png'))  # 设置窗口图标
 
+        layout = QGridLayout()
+
+        layout.addWidget(QLabel('Address:'), 0, 0)
         self.address_input = QLineEdit(self)
         self.address_input.setText(self.address)
-        layout.addWidget(self.address_input)
+        layout.addWidget(self.address_input, 0, 1)
 
+        layout.addWidget(QLabel('Client ID:'), 1, 0)
         self.client_id_input = QLineEdit(self)
         self.client_id_input.setText(self.client_id)
-        layout.addWidget(self.client_id_input)
+        layout.addWidget(self.client_id_input, 1, 1)
 
+        layout.addWidget(QLabel('Client Secret:'), 2, 0)
         self.client_secret_input = QLineEdit(self)
         self.client_secret_input.setText(self.client_secret)
-        layout.addWidget(self.client_secret_input)
+        layout.addWidget(self.client_secret_input, 2, 1)
 
         self.start_button = QPushButton("Start", self)
         self.start_button.clicked.connect(self.onStartClicked)
-        layout.addWidget(self.start_button)
+        layout.addWidget(self.start_button, 3, 0, 1, 2)  # 占据两列空间
 
         self.setLayout(layout)
-        self.setWindowTitle('JDQL App')
 
     def onStartClicked(self):
         address = self.address_input.text()
