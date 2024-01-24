@@ -118,41 +118,44 @@ class QL:
 def find_cookie(cookies):
     """提取pt_key和pt_pin
     """
+    pt_pin = pt_key = None
     for item in cookies.split('; '):
         if 'pt_pin' in item:
             pt_pin = item
         if 'pt_key' in item:
             pt_key = item
-    jd_cookie = pt_pin + ';' + pt_key + ';'
-    print("Cookie:", jd_cookie)
-    return jd_cookie
-
+    if pt_pin and pt_key:
+        jd_cookie = f"{pt_pin};{pt_key};"
+        print("Cookie:", jd_cookie)
+        return jd_cookie
+    return None
 
 # 获取JD Cookie的函数
 async def get_jd_cookie():
-    # ... [您提供的获取JD Cookie的主要代码] ...
-    # 替换原有的main函数内容
     browser = await launch(headless=False, dumpio=True, autoClose=False,
-                           args=['--no-sandbox', '--window-size=1000,800', '--disable-infobars'])  # 进入有头模式
-    context = await browser.createIncognitoBrowserContext()  # 隐身模式
-    page = await context.newPage()  # 打开新的标签页
-    await page.setViewport({'width': 1000, 'height': 800})  # 页面大小一致
-    await page.goto('https://home.m.jd.com/myJd/home.action',
-                    {'timeout': 1000 * 60})  # 访问主页、增加超时解决Navigation Timeout Exceeded: 30000 ms exceeded报错
+                           args=['--no-sandbox', '--window-size=1000,800', '--disable-infobars'])
+    context = await browser.createIncognitoBrowserContext()
+    page = await context.newPage()
+    await page.setViewport({'width': 1000, 'height': 800})
+    await page.goto('https://home.m.jd.com/myJd/home.action', {'timeout': 1000 * 60})
 
-    await page.waitFor(1000)
-    elm = await page.waitForXPath('//*[@id="myHeader"]', timeout=0)  # 通过判断用户头像是否存在来确定登录状态
-    if elm:
-        cookie = await page.cookies()
-        # print(cookie)
-        # 格式化cookie
-        cookies_temp = []
-        for i in cookie:
-            cookies_temp.append('{}={}'.format(i["name"], i["value"]))
-        cookies = '; '.join(cookies_temp)
-        jd_cokkie_get = find_cookie(cookies)
-        # print("cookies:{}".format(await page.cookies()))
-    return jd_cokkie_get
+    try:
+        await page.waitFor(1000)
+        elm = await page.waitForXPath('//*[@id="myHeader"]', timeout=0)
+        if elm:
+            cookie = await page.cookies()
+            cookies_temp = ['{}={}'.format(i["name"], i["value"]) for i in cookie]
+            cookies = '; '.join(cookies_temp)
+            jd_cookie = find_cookie(cookies)
+        else:
+            jd_cookie = None
+    except Exception as e:
+        print(f"Error during cookie retrieval: {e}")
+        jd_cookie = None
+    finally:
+        await browser.close()  # 确保无论如何都关闭浏览器
+
+    return jd_cookie
 
 
 # 更新JD Cookie到青龙面板
