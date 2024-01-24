@@ -1,12 +1,10 @@
 import asyncio
-import os
 from pyppeteer import launch
 import requests
 from json import dumps as jsonDumps
 
 
 # 青龙API类
-
 class QL:
     def __init__(self, address: str, id: str, secret: str) -> None:
         """
@@ -31,7 +29,7 @@ class QL:
         url = f"{self.address}/open/auth/token?client_id={self.id}&client_secret={self.secret}"
         try:
             rjson = requests.get(url).json()
-            if (rjson['code'] == 200):
+            if rjson['code'] == 200:
                 self.auth = f"{rjson['data']['token_type']} {rjson['data']['token']}"
             else:
                 self.log(f"登录失败：{rjson['message']}")
@@ -47,7 +45,7 @@ class QL:
         headers = {"Authorization": self.auth}
         try:
             rjson = requests.get(url, headers=headers).json()
-            if (rjson['code'] == 200):
+            if rjson['code'] == 200:
                 return rjson['data']
             else:
                 self.log(f"获取环境变量失败：{rjson['message']}")
@@ -62,7 +60,7 @@ class QL:
         headers = {"Authorization": self.auth, "content-type": "application/json"}
         try:
             rjson = requests.delete(url, headers=headers, data=jsonDumps(ids)).json()
-            if (rjson['code'] == 200):
+            if rjson['code'] == 200:
                 self.log(f"删除环境变量成功：{len(ids)}")
                 return True
             else:
@@ -80,7 +78,7 @@ class QL:
         headers = {"Authorization": self.auth, "content-type": "application/json"}
         try:
             rjson = requests.post(url, headers=headers, data=jsonDumps(envs)).json()
-            if (rjson['code'] == 200):
+            if rjson['code'] == 200:
                 self.log(f"新建环境变量成功：{len(envs)}")
                 return True
             else:
@@ -98,7 +96,7 @@ class QL:
         headers = {"Authorization": self.auth, "content-type": "application/json"}
         try:
             rjson = requests.put(url, headers=headers, data=jsonDumps(env)).json()
-            if (rjson['code'] == 200):
+            if rjson['code'] == 200:
                 self.log(f"更新环境变量成功")
                 return True
             else:
@@ -115,7 +113,7 @@ class QL:
 # BY - SA版权协议，转载请附上原文出处链接及本声明。
 # 原文链接：https: // blog.csdn.net / wsfsp_4 / article / details / 128316982
 
-def find_cookie(cookies):
+def find_cookie(cookies: str) -> str:
     """提取pt_key和pt_pin
     """
     pt_pin = pt_key = None
@@ -130,8 +128,9 @@ def find_cookie(cookies):
         return jd_cookie
     return None
 
+
 # 获取JD Cookie的函数
-async def get_jd_cookie():
+async def get_jd_cookie() -> str:
     browser = await launch(headless=False, dumpio=True, autoClose=False,
                            args=['--no-sandbox', '--window-size=1000,800', '--disable-infobars'])
     context = await browser.createIncognitoBrowserContext()
@@ -180,10 +179,10 @@ def update_jd_cookie_to_ql(ql, jd_cookie, remark):
     # 如果不存在相同备注，则新增JD_COOKIE
     env = [
         {
-        "name": "JD_COOKIE",
-        "value": str(jd_cookie),
-        "remarks": remark
-       }
+            "name": "JD_COOKIE",
+            "value": str(jd_cookie),
+            "remarks": remark
+        }
     ]
     # 新增JD_COOKIE
     ql.addEnvs(env)  # 调用新增环境变量的方法
