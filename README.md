@@ -22,9 +22,9 @@
 4. 登录成功后，等待程序自动更新Cookie至青龙面板环境变量中。
 
 ## 运行截图
-![jd login](https://github.com/ljpkok/JD_Cookie_QL_Uploader/images/jd_login.png)
+![JD Login Screenshot](https://github.com/ljpkok/JD_Cookie_QL_Uploader/blob/main/images/jd_login.png?raw=true)
 
-![exe](https://github.com/ljpkok/JD_Cookie_QL_Uploader/images/exe.png)
+![exe](https://github.com/ljpkok/JD_Cookie_QL_Uploader/blob/main/images/exe.png?raw=true)
 
 ## 注意事项
 - 确保您的青龙面板可正常访问且`client_id`和`client_secret`正确无误。
