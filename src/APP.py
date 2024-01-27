@@ -10,7 +10,7 @@ from jd_cookie_uploader import get_jd_cookie
 from jd_cookie_uploader import update_jd_cookie_to_ql
 
 
-config_path = 'config.ini'
+config_path = '../config.ini'
 
 address = "temp"
 client_id = "temp"
