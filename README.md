@@ -8,22 +8,23 @@
 - **更新青龙面板环境变量**：将获取到的JD Cookie自动更新到青龙面板的环境变量中，便于其他脚本使用。
 
 ## 灵感来源
-本项目的灵感来源于[huaisha1224](https://github.com/huaisha1224)的原始代码和CSDN博客文章：[青龙面板教程(三)：OpenApi](https://blog.csdn.net/wsfsp_4/article/details/128316982)。
+本项目的部分代码来源于[huaisha1224](https://github.com/huaisha1224/Get_JDCookie)的原始代码和CSDN博客文章：[青龙面板教程(三)：OpenApi](https://blog.csdn.net/wsfsp_4/article/details/128316982)。
 
 ## 安装指南
-1. 确保您的系统已安装Python环境。
+1. 克隆本项目到本地：
 2. 安装所需的Python库：
-
 `pip install pyppeteer requests`
 
-3. 克隆本项目到本地：
-
 ## 使用说明
-1. 在`QL`类中填写您的青龙面板地址`address`、`client_id`和`client_secret`。 获取方法[参考](https://blog.csdn.net/wsfsp_4/article/details/128316982)
-2. 默认备注为Cookie 中获取的pt_pin。
-2. 运行主脚本以获取JD Cookie并更新到青龙面板：
+1. 获取您的青龙面板地址`address`、`client_id`和`client_secret`。 获取方法[参考](https://blog.csdn.net/wsfsp_4/article/details/128316982)
+2. 打开打包好的`exe`文件或`python jd_cookie_uploader.py`， 
+3. 在弹出的新窗口中使用手机号和验证码登录京东网站。
+4. 登录成功后，等待程序自动更新Cookie至青龙面板环境变量中。
 
-`python jd_cookie_uploader.py`
+## 运行截图
+![jd login](https://github.com/ljpkok/JD_Cookie_QL_Uploader/images/jd_login.png)
+
+![exe](https://github.com/ljpkok/JD_Cookie_QL_Uploader/images/exe.png)
 
 ## 注意事项
 - 确保您的青龙面板可正常访问且`client_id`和`client_secret`正确无误。
