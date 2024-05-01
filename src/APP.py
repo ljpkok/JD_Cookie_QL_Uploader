@@ -7,9 +7,8 @@ from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtCore import Qt, QTimer
 
 # 引入 ql 类
-from jd_cookie_uploader import QL
-from jd_cookie_uploader import get_jd_cookie
-from jd_cookie_uploader import update_jd_cookie_to_ql
+from ql import QL
+from jd_cookie_uploader import get_jd_cookie, update_jd_cookie_to_ql
 
 config_path = './config.ini'
 
@@ -42,6 +41,7 @@ class JDQLApp(QWidget):
     def __init__(self):
         super().__init__()
         self.status_label = None
+        # 读取配置文件
         self.address, self.client_id, self.client_secret = read_config(config_path)
         self.initUI()
 
@@ -94,6 +94,7 @@ class JDQLApp(QWidget):
         self.status_label.setText(message)
 
     def onStartClicked(self):
+        # 读取输入框中的内容
         address = self.address_input.text()
         client_id = self.client_id_input.text()
         client_secret = self.client_secret_input.text()

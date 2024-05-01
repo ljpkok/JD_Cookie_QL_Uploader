@@ -1,5 +1,8 @@
 # JD Cookie 获取器
 ### 仅在青龙v2.11.3测试通过
+
+### [点击这里进行下载](https://github.com/ljpkok/JD_Cookie_QL_Uploader/releases)
+
 ## 简介
 本项目是一个用于获取JD（京东）Cookie的工具，并能够自动更新到青龙面板。它使用Python脚本通过模拟浏览器登录京东网站来获取用户的Cookie，然后利用青龙面板的API将Cookie更新至环境变量中。
 
