@@ -36,7 +36,19 @@ async def get_jd_cookie() -> (bool, str):
     # 在隐私上下文中打开新的页面
     page = await context.newPage()
     await page.setViewport({'width': 1000, 'height': 800})
-    await page.goto('https://home.m.jd.com/myJd/home.action', {'timeout': 1000 * 60})
+    await page.goto('https://home.m.jd.com/myJd/newhome.action', {'timeout': 1000 * 60})
+
+    # 等待页面加载完成
+    await page.waitForNavigation({'waitUntil': 'domcontentloaded'})
+
+    # 检查页面是否跳转到登录页面
+    if 'plogin.m.jd.com' in page.url:
+        print("Redirected to login page. Logging in...")
+
+        # 等待页面加载完成
+        await page.waitForNavigation({'waitUntil': 'domcontentloaded'})
+
+    await page.goto('https://home.m.jd.com/myJd/newhome.action', {'timeout': 1000 * 60})
 
     try:
         await page.waitFor(1000)
