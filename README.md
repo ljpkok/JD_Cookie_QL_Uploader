@@ -36,3 +36,13 @@
 欢迎通过GitHub提交问题报告和拉取请求以帮助改进此项目。
 
 ---
+
+## Star History
+
+<a href="https://star-history.com/#ljpkok/JD_Cookie_QL_Uploader&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=ljpkok/JD_Cookie_QL_Uploader&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=ljpkok/JD_Cookie_QL_Uploader&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=ljpkok/JD_Cookie_QL_Uploader&type=Date" />
+ </picture>
+</a>
