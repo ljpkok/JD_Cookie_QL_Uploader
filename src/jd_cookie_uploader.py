@@ -36,7 +36,9 @@ async def get_jd_cookie() -> (bool, str):
     # 在隐私上下文中打开新的页面
     page = await context.newPage()
     await page.setViewport({'width': 1000, 'height': 800})
-    await page.goto('https://home.m.jd.com/myJd/newhome.action', {'timeout': 1000 * 60})
+    await page.goto("https://plogin.m.jd.com/login/login?appid=300&returnurl=https%3A%2F%2Fwq.jd.com%2Fpassport"
+                    "%2FLoginRedirect%3Fstate%3D1103073577433%26returnurl%3Dhttps%253A%252F%252Fhome.m.jd.com"
+                    "%252FmyJd%252Fhome.action&source=wq_passport", {'timeout': 10000 * 60})
 
     # 等待页面加载完成
     await page.waitForNavigation({'waitUntil': 'domcontentloaded'})
@@ -48,7 +50,7 @@ async def get_jd_cookie() -> (bool, str):
         # 等待页面加载完成
         await page.waitForNavigation({'waitUntil': 'domcontentloaded'})
 
-    await page.goto('https://home.m.jd.com/myJd/newhome.action', {'timeout': 1000 * 60})
+    await page.goto('https://home.m.jd.com/myJd/newhome.action', {'timeout': 10000 * 60})
 
     try:
         await page.waitFor(1000)
@@ -101,6 +103,7 @@ def update_jd_cookie_to_ql(ql, jd_cookie, remark):
     # 新增JD_COOKIE
     ql.addEnvs(env)  # 调用新增环境变量的方法
     return True
+
 
 if __name__ == "__main__":
     # 初始化青龙API
